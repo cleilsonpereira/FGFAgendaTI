@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import {AF} from "../providers/af";
+import { LoginPageComponent } from './login-page/login-page.component';
 //Must export the config
 export const firebaseConfig = {
 	apiKey: 'AIzaSyBPNFiXoYNVZg3jmI_yPIWiTFGP2acPSqY',
@@ -13,7 +14,7 @@ export const firebaseConfig = {
 };
 
 @NgModule({
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, LoginPageComponent ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig)
