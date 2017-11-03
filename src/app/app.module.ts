@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
+import {AF} from "../providers/af";
 //Must export the config
 export const firebaseConfig = {
 	apiKey: 'AIzaSyBPNFiXoYNVZg3jmI_yPIWiTFGP2acPSqY',
@@ -17,6 +18,7 @@ export const firebaseConfig = {
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
+  providers: [AF],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
