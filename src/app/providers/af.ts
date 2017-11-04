@@ -1,9 +1,19 @@
 // src/app/providers/af.ts
 import {Injectable} from "@angular/core";
-import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
+import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
 @Injectable()
 export class AF {
-	constructor(public af: AngularFire) {}
+
+	public agenda-ti: FirebaseListObservable<any>;
+	public users: FirebaseListObservable<any>;
+	public id: int;
+	public nome: string;
+	public local: string;
+	public descricao: string;
+	public data: date;
+	constructor(public af: AngularFire) {
+		this.agenda-ti = this.af.database.list('agenda-ti');
+	}
 	/**
 	 * Logs in the user
 	 * @returns {firebase.Promise<FirebaseAuthState>}
@@ -19,5 +29,19 @@ export class AF {
 	 */
 	logout() {
 		return this.af.auth.logout();
+	}
+	/**
+	 * Saves a message to the Firebase Realtime Database
+	 * @param text
+	 */
+	sendMessage(text) {
+		var message = {
+			id: this.id,
+			nome: this.nome,
+			local: this.local,
+			descricao: this.descricao,
+			data: this.data
+		};
+		this.agenda-ti.push(message);
 	}
 }
