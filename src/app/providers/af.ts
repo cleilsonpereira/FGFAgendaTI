@@ -6,11 +6,8 @@ export class AF {
 
 	public agenda-ti: FirebaseListObservable<any>;
 	public users: FirebaseListObservable<any>;
-	public id: int;
 	public nome: string;
 	public local: string;
-	public descricao: string;
-	public data: date;
 	constructor(public af: AngularFire) {
 		this.agenda-ti = this.af.database.list('agenda-ti');
 	}
@@ -36,11 +33,11 @@ export class AF {
 	 */
 	sendMessage(text) {
 		var message = {
-			id: this.id,
+			id: int,
 			nome: this.nome,
 			local: this.local,
-			descricao: this.descricao,
-			data: this.data
+			descricao: text,
+			data: date
 		};
 		this.agenda-ti.push(message);
 	}
