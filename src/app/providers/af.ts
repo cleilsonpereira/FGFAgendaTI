@@ -4,12 +4,12 @@ import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from '
 @Injectable()
 export class AF {
 
-	public agenda-ti: FirebaseListObservable<any>;
+	public agendaTi: FirebaseListObservable<any>;
 	public users: FirebaseListObservable<any>;
 	public nome: string;
 	public local: string;
 	constructor(public af: AngularFire) {
-		this.agenda-ti = this.af.database.list('agenda-ti');
+		this.agendaTi = this.af.database.list('agendaTi');
 	}
 	/**
 	 * Logs in the user
@@ -33,12 +33,12 @@ export class AF {
 	 */
 	sendMessage(text) {
 		var message = {
-			id: int,
+			id: text,
 			nome: this.nome,
 			local: this.local,
 			descricao: text,
-			data: date
+			data: text
 		};
-		this.agenda-ti.push(message);
+		this.agendaTi.push(message);
 	}
 }

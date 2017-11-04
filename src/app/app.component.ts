@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class AppComponent {
   
 
-  public is LoggedIn: boolean;
+  public isLoggedIn: boolean;
   constructor(public afService: AF, private router: Router) {
 	// This asynchronously checks if our user is logged it and will automatically
 	// redirect them to the Login page when the status changes.
