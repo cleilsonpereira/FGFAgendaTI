@@ -5,6 +5,7 @@ import { AngularFireModule } from 'angularfire2';
 import {AF} from "../providers/af";
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { RouterModule, Routes } from "@angular/routes";
 //Must export the config
 export const firebaseConfig = {
 	apiKey: 'AIzaSyBPNFiXoYNVZg3jmI_yPIWiTFGP2acPSqY',
@@ -13,12 +14,17 @@ export const firebaseConfig = {
 	storageBucket: 'agenda-ti.appspot.com',
 	messagingSenderId: '1045975167017'
 };
+const routes: Routes = [
+	{ path: '', component: HomePageComponent },
+	{ path: 'login', component: LoginPageComponent }
+];
 
 @NgModule({
   declarations: [ AppComponent, LoginPageComponent, HomePageComponent ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    RouterModule.forRoot(routes)
   ],
   providers: [AF],
   bootstrap: [AppComponent]
