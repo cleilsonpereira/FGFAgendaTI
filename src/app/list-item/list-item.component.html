@@ -1,3 +1,21 @@
-<p>
-  list-item works!
-</p>
+<div class="card" *ngIf="product">
+  <h3 class="card-header">Evento</h3>
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-3">
+        <img style="height: 200px; width: 100%; display: block;" src="{{product.imageUrl}}"
+          alt="Card image">
+      </div>
+      <div class="col-md-6 mt-1">
+        <h5 class="card-title">{{product.nome}}</h5>
+        <h6 class="card-subtitle text-muted">{{product.local}}</h6>
+        <p class="card-text">{{product.descricao}}</p>
+        <h5 class="card-title">{{product.data | currency: 'INR': true}}</h5>
+      </div>
+      <div class="col-md-3 p-5">
+        <button class="btn btn-primary btn-lg btn-block">Buy Now</button>
+        <button class="btn btn-success btn-lg btn-block">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
