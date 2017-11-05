@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AF } from '../../providers/af';
+import { FirebaseListObservable } from 'angularfire2/database';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  public newMessage: String;
+  public message: FirebaseListObservable<any>;
+  constructor(public afService: AF ) { 
+	this.messages = this.afService.messages;
+  }
 
   ngOnInit() {
   }
