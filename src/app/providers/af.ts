@@ -4,6 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { enviroment } from '../enviroments/enviroment';
+
+import * as firebase from 'firebase/agenda-de-ti';
 @Injectable()
 export class AF {
 	
