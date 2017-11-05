@@ -6,6 +6,8 @@ import { AF } from "../providers/af";
 import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/routes';
+import { FormsModule } from '@angular/forms';
+
 //Must export the config
 export const firebaseConfig = {
 	apiKey: 'AIzaSyBPNFiXoYNVZg3jmI_yPIWiTFGP2acPSqY',
@@ -27,7 +29,8 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [AF],
   bootstrap: [AppComponent]
