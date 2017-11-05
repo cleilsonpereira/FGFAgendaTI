@@ -1,44 +1,24 @@
 // src/app/providers/af.ts
 import {Injectable} from "@angular/core";
-import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class AF {
-
-	public agendaTi: FirebaseListObservable<any>;
-	public users: FirebaseListObservable<any>;
-	public nome: string;
-	public local: string;
-	constructor(public af: AngularFire) {
-		this.agendaTi = this.af.database.list('agendaTi');
+	
+	user: Observable<firebase.User>;
+	items: FirebaseListObservable<any[]>;
+	constructor(afAuth: AngularFireAuth, db: AngularFireDatabase) {
+		this.user = afAuth.authState;
+		this.items = db.list('items');
 	}
-	/**
-	 * Logs in the user
-	 * @returns {firebase.Promise<FirebaseAuthState>}
-	 */
-	loginWithGoogle() {
-		return this.af.auth.login({
-			providers: AuthProviders.Google,
-			method: AuthMethods.Popup,
-		});
+	login(){
+		this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 	}
-	/**
-	 * Logs out the current user
-	 */
 	logout() {
-		return this.af.auth.logout();
+		this.afAuth.auth.signout();
 	}
-	/**
-	 * Saves a message to the Firebase Realtime Database
-	 * @param text
-	 */
-	sendMessage(text) {
-		var message = {
-			id: text,
-			nome: this.nome,
-			local: this.local,
-			descricao: text,
-			data: text
-		};
-		this.agendaTi.push(message);
-	}
+	
+
 }
