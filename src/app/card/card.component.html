@@ -1,3 +1,16 @@
-<p>
-  card works!
-</p>
+<div class="card" *ngIf="product">
+  <h3 class="card-header">Evento</h3>
+  <div class="card-block">
+    <h5 class="card-title">{{product.nome}}</h5>
+    <h6 class="card-subtitle text-muted">{{product.local}}</h6>
+  </div>
+  <img style="height: 200px; width: 100%; display: block;" src="{{product.imageUrl}}" alt="Card image">
+  <div class="card-block">
+    <p class="card-text">{{product.descricao}}</p>
+    <button class="btn btn-primary btn-lg btn-block">Buy Now</button>
+    <button class="btn btn-success btn-lg btn-block">Add To Cart</button>
+  </div>
+  <div class="card-footer text-muted text-xs-center">
+    {{product.data | currency: 'INR': true}}
+  </div>
+</div>
