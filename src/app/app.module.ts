@@ -1,41 +1,55 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { AngularFireModule } from 'angularfire2';
-import { AF } from "../providers/af";
-import { LoginPageComponent } from './login-page/login-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { RouterModule, Routes } from '@angular/routes';
 import { FormsModule } from '@angular/forms';
-import { ProductManageComponent } from './product-manage/product-manage.component';
-import { ProductsTableComponent } from './products-table/products-table.component';
-import { ProductFormComponent } from './product-form/product-form.component';
+import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
-//Must export the config
-export const firebaseConfig = {
-	apiKey: 'AIzaSyBPNFiXoYNVZg3jmI_yPIWiTFGP2acPSqY',
-	authDomain: 'agenda-ti.firebaseapp.com',
-	databaseURL: 'https://agenda-ti.firebaseio.com',
-	projectId: 'agenda-ti',
-	storageBucket: 'agenda-ti.appspot.com',
-	messagingSenderId: '1045975167017'
-};
-const routes: Routes = [
-	{ path: '', component: HomePageComponent },
-	{ path: 'login', component: LoginPageComponent }
-];
+import { AppComponent } from './app.component';
+import { routes } from './app.routes';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CardViewComponent } from './card-view/card-view.component';
+import { ListViewComponent } from './list-view/list-view.component';
+import { CardContainerComponent } from './card-container/card-container.component';
+import { CardComponent } from './card/card.component';
+import { ListContainerComponent } from './list-container/list-container.component';
+import { ListItemComponent } from './list-item/list-item.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { AuthenticationService } from './shared/authentication.service';
+import { AuthGuard } from './shared/authguard.service';
+import { ProductManageComponent } from './product-manage/product-manage.component';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductsTableComponent } from './products-table/products-table.component';
+import { ProductService } from './shared/product.service';
 
 @NgModule({
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, ProductManageComponent, ProductsTableComponent, ProductFormComponent ],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    CardViewComponent,
+    ListViewComponent,
+    CardContainerComponent,
+    CardComponent,
+    ListContainerComponent,
+    ListItemComponent,
+    SignInComponent,
+    ProductManageComponent,
+    ProductFormComponent,
+    ProductsTableComponent
+  ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    HttpModule,
+    routes,
+    AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
-  providers: [AF],
+  providers: [AuthenticationService, AuthGuard, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
