@@ -7,6 +7,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RouterModule, Routes } from '@angular/routes';
 import { FormsModule } from '@angular/forms';
+import { ProductManageComponent } from './product-manage/product-manage.component';
+import { ProductsTableComponent } from './products-table/products-table.component';
+import { ProductFormComponent } from './product-form/product-form.component';
 
 //Must export the config
 export const firebaseConfig = {
@@ -23,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ AppComponent, LoginPageComponent, HomePageComponent ],
+  declarations: [ AppComponent, LoginPageComponent, HomePageComponent, ProductManageComponent, ProductsTableComponent, ProductFormComponent ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
