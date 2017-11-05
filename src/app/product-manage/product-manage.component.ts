@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../shared/product.model';
 
 @Component({
   selector: 'app-product-manage',
   templateUrl: './product-manage.component.html',
-  styleUrls: ['./product-manage.component.css']
+  styleUrls: ['./product-manage.component.scss']
 })
 export class ProductManageComponent implements OnInit {
 
@@ -12,4 +13,16 @@ export class ProductManageComponent implements OnInit {
   ngOnInit() {
   }
 
+  selectedProduct: Product;
+  addBool: boolean;
+
+  getSelectedProduct(event) {
+    this.selectedProduct = event;
+  }
+
+  addOrUpdate(event) {
+    this.addBool = event;
+  }
+
 }
+
